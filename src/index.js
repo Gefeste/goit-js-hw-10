@@ -19,7 +19,7 @@ function onLoad(eve) {
     
     fetchCountries(eve.target.value.trim())
         .then(data => {
-            if (data.length > 10) {
+            if (data.length > 10 || data.length === 0) {
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
                 return
             };
@@ -28,7 +28,7 @@ function onLoad(eve) {
     } else {
         list.innerHTML = createMarkupCountry(data)
             };
-        })
+        }).catch(err => Notiflix.Notify.failure('Oops, there is no country with that name'))
 };
 
 
