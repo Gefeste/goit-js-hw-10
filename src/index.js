@@ -6,7 +6,6 @@ import Notiflix from 'notiflix';
 const DEBOUNCE_DELAY = 300;
 const list = document.querySelector('.country-list')
 const input = document.querySelector('#search-box');
-const remo = document.querySelector('.js-remove')
 input.addEventListener('input', debounce(onLoad, DEBOUNCE_DELAY));
 console.log()
 
@@ -47,13 +46,13 @@ function createMarkupCountry(arr) {
         languages
     }) =>
         
-        `<div class="js-remove">
+        `
         <img src="${svg}" width="50" alt="flag">
         <h1>${official}</h1>
         <p>Capital: ${capital}</p>
         <p>Population: ${population}</p>
                 <p>Languages: ${Object.values(languages)}</p>
-        </div>`
+        `
     ).join('')
 }
 
@@ -67,14 +66,14 @@ function createMarkup(arr) {
                 svg
             }
         }) =>
-            `<div class="js-remove">
+            `
             <li class=""js-list>
         <div class="js-box">
         <img src="${svg}" width="30" alt="flag">
         <p>${official}</p>
         </div>
         </li>
-        </div>`
+        `
         ).join('')
     }
 
