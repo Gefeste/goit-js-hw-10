@@ -18,3 +18,20 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+.js-list {
+  display: flex;
+margin: 15px;
+} 
+
+p {
+  margin: 3px;
+}
+
+ .js-box {
+  display: flex;
+} 
+
+.country-list {
+  margin: 20;
+}
