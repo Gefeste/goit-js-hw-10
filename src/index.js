@@ -4,7 +4,8 @@ import debounce from "lodash.debounce";
 import Notiflix from 'notiflix';
 
 const DEBOUNCE_DELAY = 300;
-const list = document.querySelector('.country-list')
+const list = document.querySelector('.country-list');
+const info = document.querySelector('.country-info');
 const input = document.querySelector('#search-box');
 input.addEventListener('input', debounce(onLoad, DEBOUNCE_DELAY));
 console.log()
@@ -14,6 +15,7 @@ console.log()
 function onLoad(eve) {
     if (eve.target.value.trim() === "") {
         list.innerHTML = "";
+        info.innerHTML = "";
         return
     };
     
@@ -24,13 +26,18 @@ function onLoad(eve) {
                 return
             };
             if (data.length > 1) {
+                info.innerHTML = "";
         list.innerHTML = createMarkup(data)
-    } else {
-        list.innerHTML = createMarkupCountry(data)
+            } else {
+                list.innerHTML = "";
+        info.innerHTML = createMarkupCountry(data)
             };
-        }).catch(err => Notiflix.Notify.failure('Oops, there is no country with that name'))
+        }).catch(() => {
+            list.innerHTML = "";
+            info.innerHTML = "";
+            Notiflix.Notify.failure('Oops, there is no country with that name')
+        })
 };
-
 
 
 function createMarkupCountry(arr) {
